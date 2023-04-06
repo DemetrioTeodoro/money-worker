@@ -8,9 +8,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import br.com.moneyworker.entities.Category;
 import br.com.moneyworker.entities.Order;
 import br.com.moneyworker.entities.User;
 import br.com.moneyworker.entities.enums.OrderStatus;
+import br.com.moneyworker.repositories.CategoryRepository;
 import br.com.moneyworker.repositories.OrderRepository;
 import br.com.moneyworker.repositories.UserRepository;
 
@@ -23,9 +25,16 @@ public class TestConfig implements CommandLineRunner {
 
 	@Autowired
 	private OrderRepository orderRepository;
+	
+	@Autowired
+	private CategoryRepository categoryRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
+		Category category1 = new Category(null, "Clothes");
+		Category category2 = new Category(null, "Sporting");
+		Category category3 = new Category(null, "Technological");
+		
 		User user1 = new User(null, "Maria", "maria@gmail.com", "988888888", "123456");
 		User user2 = new User(null, "Arthur", "arthur@gmail.com", "977777777", "123456");
 
@@ -33,6 +42,7 @@ public class TestConfig implements CommandLineRunner {
 		Order order2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"), OrderStatus.DELIVERED, user2);
 		Order order3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"), OrderStatus.SHIPPED, user2);
 
+		categoryRepository.saveAll(Arrays.asList(category1, category2, category3));
 		userRepository.saveAll(Arrays.asList(user1, user2));
 		orderRepository.saveAll(Arrays.asList(order1, order2, order3));
 	}
