@@ -19,9 +19,9 @@ public enum OrderStatus {
 	}
 
 	public static OrderStatus valueOf(int code) {
-		for (OrderStatus value : OrderStatus.values()) {
-			if (value.getCode() == code) {
-				return value;
+		for (OrderStatus orderStatus : OrderStatus.values()) {
+			if (orderStatus.getCode() == code) {
+				return orderStatus;
 			}
 		}
 		throw new IllegalArgumentException("Invalid OrderStus code");
