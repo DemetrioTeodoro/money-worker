@@ -25,7 +25,7 @@ public class User implements Serializable {
 	private String email;
 	private String phone;
 	private String password;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "client")
 	private List<Order> orders = new ArrayList<Order>();
@@ -69,7 +69,7 @@ public class User implements Serializable {
 	public String getPhone() {
 		return phone;
 	}
-	
+
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
@@ -109,5 +109,5 @@ public class User implements Serializable {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}	
+	}
 }
