@@ -1,5 +1,7 @@
 package br.com.moneyworker.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.moneyworker.entities.pk.OrderItemPk;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -10,7 +12,7 @@ import jakarta.persistence.Table;
 public class OrderItem {
 
 	@EmbeddedId
-	private OrderItemPk id;
+	private OrderItemPk id = new OrderItemPk();
 
 	private Integer quantity;
 	private Double price;
@@ -27,6 +29,7 @@ public class OrderItem {
 		super();
 	}
 
+	@JsonIgnore
 	public Order getOrder() {
 		return id.getOrder();
 	}
