@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.moneyworker.entities.enums.OrderStatus;
 import jakarta.persistence.Entity;
@@ -36,7 +35,7 @@ public class Order implements Serializable {
 	private User client;
 
 	@OneToMany(mappedBy = "id.order")
-	private Set<OrderItem> orderItems = new HashSet<OrderItem>();
+	private Set<OrderItem> items = new HashSet<OrderItem>();
 
 	public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
 		super();
@@ -85,11 +84,11 @@ public class Order implements Serializable {
 	}
 
 	public Set<OrderItem> getOrderItems() {
-		return orderItems;
+		return items;
 	}
 
 	public void setOrderItems(Set<OrderItem> orderItems) {
-		this.orderItems = orderItems;
+		this.items = orderItems;
 	}
 
 	@Override
